@@ -105,22 +105,25 @@
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
+// إذا رجعنا من تسجيل دخول Discord
 if(code){
 
-  // نحفظ حالة تسجيل الدخول
-  localStorage.setItem("mk5_logged", "true");
+  localStorage.setItem("mk5_login","true");
 
-  // نحذف ?code من الرابط
-  window.history.replaceState({}, document.title, "/Activation-mk5.pd/");
+  // إزالة code من الرابط بدون كسر المسار
+  window.history.replaceState({}, document.title, window.location.pathname);
 
 }
 
-if(localStorage.getItem("mk5_logged")){
+// إذا كان المستخدم مسجل دخول
+if(localStorage.getItem("mk5_login")){
 
   const btn = document.getElementById("authBtn");
 
-  btn.textContent = "بـدء الـتـفـعـيـل الإلـكـتـرونـي";
-  btn.href = "rules.html";
+  if(btn){
+    btn.textContent = "بـدء الـتـفـعـيـل الإلـكـتـرونـي";
+    btn.href = "rules.html";
+  }
 
 }
 
