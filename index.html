@@ -102,29 +102,27 @@
 
 <script>
 
-// نتحقق هل المستخدم مسجل دخول
-async function checkLogin() {
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
 
-  try {
+if(code){
 
-    const r = await fetch("/api/me");
+  // نحفظ حالة تسجيل الدخول
+  localStorage.setItem("mk5_logged", "true");
 
-    if (!r.ok) return; // غير مسجل
-
-    const data = await r.json();
-
-    // إذا وصلنا هنا يعني مسجل دخول
-    const btn = document.getElementById("authBtn");
-
-    btn.textContent = "بـدء الـتـفـعـيـل الإلـكـتـرونـي";
-    btn.href = "/rules.html";
-
-  } catch(e) {
-  }
+  // نحذف ?code من الرابط
+  window.history.replaceState({}, document.title, "/Activation-mk5.pd/");
 
 }
 
-checkLogin();
+if(localStorage.getItem("mk5_logged")){
+
+  const btn = document.getElementById("authBtn");
+
+  btn.textContent = "بـدء الـتـفـعـيـل الإلـكـتـرونـي";
+  btn.href = "rules.html";
+
+}
 
 </script>
 
