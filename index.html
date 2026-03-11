@@ -105,24 +105,21 @@
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
-// إذا رجعنا من تسجيل دخول Discord
 if(code){
 
   localStorage.setItem("mk5_login","true");
 
-  // إزالة code من الرابط بدون كسر المسار
   window.history.replaceState({}, document.title, window.location.pathname);
 
 }
 
-// إذا كان المستخدم مسجل دخول
 if(localStorage.getItem("mk5_login")){
 
   const btn = document.getElementById("authBtn");
 
   if(btn){
     btn.textContent = "بـدء الـتـفـعـيـل الإلـكـتـرونـي";
-    btn.href = "rules.html";
+    btn.href = "/Activation-mk5.pd/rules.html";
   }
 
 }
